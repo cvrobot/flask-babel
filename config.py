@@ -6,9 +6,16 @@ basedir=os.path.abspath(os.path.dirname(__file__))
 class Config:
   SECRET_KEY='set a secret key here'
   DEBUG = True
+  DEF_LANGUAGE = 'en'
   LANGUAGES = {
-    'en': 'English',
-    'fr': 'Français'
+      'en': {
+          'LANG_CODE':'en2',
+          'OLD_CODES':['en', 'en1']
+      },
+      'fr': {
+          'LANG_CODE':'fr',
+          'OLD_CODES':[None]
+      }
   }
 
   @staticmethod
