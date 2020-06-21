@@ -36,7 +36,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <span>{{gettext('Simple App')}}</span>
+          <span>{{_('Simple App')}}</span>
 
         </div>
 
@@ -45,8 +45,9 @@
 
 
     <div class="container">
+      <h1>dynamic:{{ dynamic }}</h1>
 
-      <h1>{{gettext('Welcome to the simplest app')}}</h1>
+      <h1>{{_('Welcome to the simplest app')}}</h1>
 
 
       <h1>g.lang_code: {{g['lang_code']}}</h1>
@@ -58,7 +59,7 @@
       {% else %}
         {% set new_lang_code='en' %}
       {% endif %}
-      <a href="{{url_for('main.change',new_lang_code=new_lang_code)}}">{{gettext('Change language to EN')}}</a>
+      <a href="{{url_for('main.change',new_lang_code=new_lang_code)}}">{{_('Change language to EN')}}</a>
 
     </div> <!-- /container -->
 

@@ -5,7 +5,8 @@
 from . import mod_main
 from flask import render_template, flash,redirect, request,url_for,g, current_app,session, abort
 from config import Config
-from gettext import gettext
+from flask_babel import gettext as _
+import random
 
 @mod_main.before_request
 def before_mod_man_request():
@@ -13,13 +14,12 @@ def before_mod_man_request():
 
 @mod_main.url_defaults
 def add_language_code(endpoint, values):
-    '''
     if current_app.url_map.is_endpoint_expecting(endpoint, 'lang_code'):
-        values['lang_code'] = g.lang_code
+        values['lang_code'] = session['lang_code']#g.lang_code
         #g.lang_code = session['lang_code']
     '''
     values.setdefault('lang_code', g.lang_code)
-
+    '''
 
 @mod_main.url_value_preprocessor
 def pull_lang_code(endpoint, values):
@@ -31,7 +31,10 @@ def pull_lang_code(endpoint, values):
 
 @mod_main.route('/',methods=['GET', 'POST'])
 def index():
-    return render_template('main/index.html')
+    d = ['Welcome to the simplest app','Simple App']
+    i = random.randint(0, len(d) - 1)
+    print("d[{}]={}".format(i, d[i]))
+    return render_template('main/index.html', dynamic=_(d[i]))
 
 
 @mod_main.route('/change/<new_lang_code>')
