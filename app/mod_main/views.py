@@ -15,8 +15,9 @@ def before_mod_man_request():
 @mod_main.url_defaults
 def add_language_code(endpoint, values):
     if current_app.url_map.is_endpoint_expecting(endpoint, 'lang_code'):
-        values['lang_code'] = session['lang_code']#g.lang_code
+        values['lang_code'] = g.lang_code #session['lang_code']
         #g.lang_code = session['lang_code']
+    print("values['lang_code'] = g.lang_code:{}".format(g.lang_code))
     '''
     values.setdefault('lang_code', g.lang_code)
     '''
@@ -39,5 +40,7 @@ def index():
 
 @mod_main.route('/change/<new_lang_code>')
 def change(new_lang_code):
-    session['lang_code']=new_lang_code
+    #session['lang_code']=new_lang_code
+    g.lang_code = new_lang_code
+    print("g.lang_code = new_lang_code:{}".format(g.lang_code))
     return redirect(url_for('main.index'))
