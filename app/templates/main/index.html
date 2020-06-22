@@ -60,7 +60,7 @@
         {% set new_lang_code='en' %}
       {% endif %}
       <a href="{{url_for('main.change',new_lang_code=new_lang_code)}}">{{_('Change language to EN')}}</a>
-
+      <a href="{{ '/' ~ new_lang_code ~ route_url }}">{{_('Change language to EN')}}</a>
     </div> <!-- /container -->
 
     <script src="{{url_for('static',filename='js/bootstrap/bootstrap.min.js')}}"></script>

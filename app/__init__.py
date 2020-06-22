@@ -132,9 +132,16 @@ def create_app(config_name):
     def inject_lang():
         if 'lang_code' not in g:
             print("context_processor no g.lang_code")
-        print("context_processor g.lang_code:{}".format(g.lang_code))
+
         #return dict(sess_lang=session['lang_code'])
-        return dict(sess_lang=g.lang_code)
+        if request.full_path:
+            url = (request.full_path if request.full_path[-1] != '?' else request.full_path[:-1]).split('/')
+            route_url = '/' + '/'.join(map(str, url[2:]))
+        else:
+            route_url = '/'
+
+        print("context_processor g.lang_code:{}, route_url:{}".format(g.lang_code, route_url))
+        return dict(sess_lang=g.lang_code, route_url=route_url)
 
     @babel.localeselector
     def get_locale():
