@@ -37,6 +37,13 @@ def index():
     print("d[{}]={}".format(i, d[i]))
     return render_template('main/index.html', dynamic=_(d[i]))
 
+@mod_main.route('/hello',methods=['GET', 'POST'])
+def index():
+    d = ['Welcome to the simplest app','Simple App']
+    i = random.randint(0, len(d) - 1)
+    print("d[{}]={}".format(i, d[i]))
+    return render_template('main/index.html', dynamic=_(d[i]))
+
 
 @mod_main.route('/change/<new_lang_code>')
 def change(new_lang_code):
