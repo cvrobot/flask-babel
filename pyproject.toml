@@ -6,7 +6,7 @@ authors = ["lanbo.gao <lanbo.gao@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.6"
-Babel = "^2.8.0"
+Babel = "^2.9.1"
 Flask = "^1.1.2"
 Flask-Babel = "^1.0.0"
 Flask-Script = "^2.0.6"
